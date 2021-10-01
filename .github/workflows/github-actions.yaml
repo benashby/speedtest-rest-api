@@ -24,6 +24,10 @@ jobs:
         with:
           images: bashby/speedtest-rest-api
 
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+
       - name: Perform NX Build
         uses: mansagroup/nrwl-nx-action@v2
         with:
