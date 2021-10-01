@@ -1,0 +1,83 @@
+{
+  "version": 2,
+  "projects": {
+    "speed-test": {
+      "root": "apps/speed-test",
+      "sourceRoot": "apps/speed-test/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/speed-test",
+            "main": "apps/speed-test/src/main.ts",
+            "tsConfig": "apps/speed-test/tsconfig.app.json",
+            "assets": ["apps/speed-test/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/speed-test/src/environments/environment.ts",
+                  "with": "apps/speed-test/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "speed-test:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/speed-test/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/speed-test"],
+          "options": {
+            "jestConfig": "apps/speed-test/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "speedtest-api": {
+      "root": "libs/speedtest-api",
+      "sourceRoot": "libs/speedtest-api/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/speedtest-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/speedtest-api"],
+          "options": {
+            "jestConfig": "libs/speedtest-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "speed-test"
+}
