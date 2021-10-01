@@ -28,6 +28,7 @@ jobs:
         uses: mansagroup/nrwl-nx-action@v2
         with:
           workingDirectory: speedtest-rest-api
+          affected: false
           targets: lint,build
 
       - name: Build and push Docker image
