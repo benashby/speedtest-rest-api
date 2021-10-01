@@ -24,6 +24,11 @@ jobs:
         with:
           images: bashby/speedtest-rest-api
 
+      - name: Perform NX Build
+        uses: mansagroup/nrwl-nx-action@v2
+        with:
+          targets: lint,build
+
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
