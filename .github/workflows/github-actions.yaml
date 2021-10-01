@@ -24,9 +24,12 @@ jobs:
         with:
           images: bashby/speedtest-rest-api
 
-      - uses: borales/actions-yarn@v2.3.0
+      - uses: actions/setup-node@v2
         with:
-          cmd: install
+          node-version: '12'
+
+      - run: yarn install
+        working-directory: speedtest-rest-api
 
       - name: Perform NX Build
         uses: mansagroup/nrwl-nx-action@v2
