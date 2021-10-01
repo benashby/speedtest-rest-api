@@ -27,6 +27,7 @@ jobs:
       - name: Perform NX Build
         uses: mansagroup/nrwl-nx-action@v2
         with:
+          workingDirectory: speedtest-rest-api
           targets: lint,build
 
       - name: Build and push Docker image
